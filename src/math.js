@@ -1,4 +1,4 @@
-export function add(numbers) {
+function add(numbers) {
   let sum = 0;
 
   for (const number of numbers) {
@@ -6,3 +6,5 @@ export function add(numbers) {
   }
   return sum;
 }
+
+export { add };
