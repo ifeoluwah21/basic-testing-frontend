@@ -1,6 +1,6 @@
 import { test, it, expect, describe } from "vitest";
 
-import { transformToNumber } from "../src/util/numbers.js";
+import { cleanNumber, transformToNumber } from "../src/util/numbers.js";
 
 
 describe(`Testing the transform to number function`, () => {
@@ -43,5 +43,62 @@ describe(`Testing the transform to number function`, () => {
     })
 
 
+
+})
+
+describe("cleanNumber function", () => {
+    it("should return an array of number values if an array of string number values is provided", () => {
+        const numberValues = ["1", "2"];
+
+        const cleanedNumbers = cleanNumber(numberValues);
+
+        expect(cleanedNumbers[0]).toBeTypeOf("number");
+        expect(cleanedNumbers[1]).toBeTypeOf("number");
+    })
+
+    it("should return an array of the number type of the array of string numbers provided", () => {
+        const numberValues = ["4", "7"];
+
+        const cleanedNumbers = cleanNumber(numberValues);
+
+        expect(cleanedNumbers[0]).toBe(+numberValues[0]);
+    })
+
+    it("should throw error if any element of the array provided is an empty string", () => {
+        const numberValues = ["1", "2", ""];
+
+        const cleanFn = () => {
+            cleanNumber(numberValues);
+        }
+
+        expect(cleanFn).toThrow();
+    })
+
+    it("should throw error if any element of the array provided is not transformable to a number", () => {
+        const numberValues = ["1", "hi"];
+
+        const cleanFn = () => {
+            cleanNumber(numberValues);
+        }
+
+        expect(cleanFn).toThrow();
+    })
+
+    it("should throw error if is no value is provided", () => {
+        const cleanFn = () => {
+            cleanNumber()
+        }
+
+        expect(cleanFn).toThrow();
+    })
+
+    it("should throw error if an empty array is provided", () => {
+        const numberValues = [];
+
+
+        const cleanedNumbers = cleanNumber(numberValues)
+
+        expect(cleanedNumbers.length).toBe(0);
+    })
 
 })

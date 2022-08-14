@@ -4,7 +4,9 @@ function transformToNumber(value) {
   return +value;
 }
 
-function cleanNumber(numberValues, numbers) {
+function cleanNumber(numberValues) {
+  const numbers = [];
+
   for (const numberInput of numberValues) {
     validateStringNotEmpty(numberInput);
     const number = transformToNumber(numberInput);

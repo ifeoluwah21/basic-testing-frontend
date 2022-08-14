@@ -15,4 +15,4 @@ function outputResult(resultText) {
     output.textContent = resultText;
 }
 
-export { outputResult, generateCalculationResult }
+export { outputResult, generateCalculationResult };

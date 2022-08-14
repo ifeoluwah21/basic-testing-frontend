@@ -12,8 +12,7 @@ function add(numbers) {
 function calculateResult(numberValues) {
   let result = "";
   try {
-    const numbers = [];
-    cleanNumber(numberValues, numbers);
+    const numbers = cleanNumber(numberValues);
     result = add(numbers).toString();
   } catch (error) {
     result = error.message;
