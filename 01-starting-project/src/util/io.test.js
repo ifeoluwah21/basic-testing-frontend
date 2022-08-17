@@ -1,24 +1,15 @@
 import { it, expect, describe, vi } from "vitest";
 import writeData from "./io.js";
-import { promises as fs } from "node:fs"
+import { promises as fs } from "fs"
 
-vi.mock("node:fs");
-vi.mock("node:path", () => {
-    return {
-        default: {
-            join(...args) {
-                return args[args.length - 1];
-            }
-        }
-    }
-});
+vi.mock("fs");
+vi.mock("path");
 describe("writeData function", () => {
     it("should invoke the writeFile method", () => {
         const testData = "test ran";
         const testFileName = "test.txt";
         writeData(testData, testFileName);
-        //return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
-
         expect(fs.writeFile).toBeCalledWith(testFileName, testData);
+        return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
     })
 })
